@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+.next/
+out/
+
+# turbo
+.turbo/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# typescript
+*.tsbuildinfo
+
+# os
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# editor
+.vscode/
+.idea/
+
+# etchkit dev artifacts
+.knowledge/
+etchkit-claude-code-prompt.md
+
+# AGENT
+.claude/

@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "@etchkit/tailwind";
+
+@source "../../../packages/ui/src/**/*.{ts,tsx}";
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "cv11", "ss01";
+  }
+}
