@@ -32,7 +32,6 @@ pnpm-debug.log*
 
 # etchkit dev artifacts
 .knowledge/
-etchkit-claude-code-prompt.md
 
 # AGENT
 .claude/

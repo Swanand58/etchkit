@@ -15,6 +15,9 @@ export function SiteHeader() {
           <Link href="/docs/components/button" className="text-xs font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
             Components
           </Link>
+          <Link href="/playground" className="text-xs font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
+            Playground
+          </Link>
           <Link
             href="https://github.com/Swanand58/etchkit"
             target="_blank"

@@ -1,6 +1,10 @@
+import fs from 'fs'
+import path from 'path'
 import { notFound } from 'next/navigation'
-import { ComponentPreview } from '@/components/component-preview'
+import { PreviewCodeTabs } from '@/components/preview-code-tabs'
 import { CodeBlock } from '@/components/code-block'
+import { componentUsage } from '@/lib/component-usage'
+import { Separator } from '@etchkit/ui'
 
 const componentMeta: Record<string, { title: string; description: string }> = {
   button: { title: 'Button', description: 'Triggers an action or event. Square, full-contrast, high-intent.' },
@@ -23,10 +27,22 @@ export function generateStaticParams() {
   return Object.keys(componentMeta).map((slug) => ({ slug }))
 }
 
+function getComponentSource(slug: string): string {
+  try {
+    const filePath = path.join(process.cwd(), '../../packages/ui/src/components', `${slug}.tsx`)
+    return fs.readFileSync(filePath, 'utf-8')
+  } catch {
+    return '// Source not available'
+  }
+}
+
 export default async function ComponentPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const meta = componentMeta[slug]
   if (!meta) notFound()
+
+  const source = getComponentSource(slug)
+  const usages = componentUsage[slug] ?? []
 
   return (
     <div className="max-w-3xl">
@@ -34,17 +50,35 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         Components
       </p>
       <h1 className="text-4xl font-bold mb-2">{meta.title}</h1>
-      <p className="text-muted-foreground mb-10">{meta.description}</p>
+      <p className="text-muted-foreground mb-8">{meta.description}</p>
 
       <section className="mb-10">
-        <p className="text-xs font-medium uppercase tracking-widest mb-4">Preview</p>
-        <ComponentPreview slug={slug} />
+        <PreviewCodeTabs slug={slug} source={source} />
       </section>
 
-      <section>
+      <Separator className="mb-10" />
+
+      <section className="mb-10">
         <p className="text-xs font-medium uppercase tracking-widest mb-4">Installation</p>
         <CodeBlock code={`npx @etchkit/cli@latest add ${slug}`} language="bash" />
       </section>
+
+      {usages.length > 0 && (
+        <>
+          <Separator className="mb-10" />
+          <section>
+            <p className="text-xs font-medium uppercase tracking-widest mb-6">Usage</p>
+            <div className="flex flex-col gap-8">
+              {usages.map((usage) => (
+                <div key={usage.title}>
+                  <p className="text-sm font-medium mb-3 text-muted-foreground">{usage.title}</p>
+                  <CodeBlock code={usage.code} language="tsx" />
+                </div>
+              ))}
+            </div>
+          </section>
+        </>
+      )}
     </div>
   )
 }
