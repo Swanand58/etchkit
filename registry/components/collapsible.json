@@ -1,8 +1,1 @@
-{"name":"collapsible","source":"import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'
-
-const Collapsible = CollapsiblePrimitive.Root
-const CollapsibleTrigger = CollapsiblePrimitive.Trigger
-const CollapsibleContent = CollapsiblePrimitive.Content
-
-export { Collapsible, CollapsibleTrigger, CollapsibleContent }
-"}
+{"name": "collapsible", "source": "import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'\n\nconst Collapsible = CollapsiblePrimitive.Root\nconst CollapsibleTrigger = CollapsiblePrimitive.Trigger\nconst CollapsibleContent = CollapsiblePrimitive.Content\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent }\n"}

@@ -1,8 +1,1 @@
-{"name":"skeleton","source":"import { cn } from '../lib/utils'
-
-function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('animate-pulse bg-muted', className)} {...props} />
-}
-
-export { Skeleton }
-"}
+{"name": "skeleton", "source": "import { cn } from '../lib/utils'\n\nfunction Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn('animate-pulse bg-muted', className)} {...props} />\n}\n\nexport { Skeleton }\n"}

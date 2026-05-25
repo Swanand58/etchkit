@@ -2,6 +2,14 @@
   <img src="./logo.svg" alt="etchkit" width="56" height="56" />
   <h1>etchkit</h1>
   <p><strong>No shadows. No softness. Just structure.</strong></p>
+  <p>
+    <a href="https://github.com/Swanand58/etchkit/actions/workflows/ci.yml">
+      <img src="https://github.com/Swanand58/etchkit/actions/workflows/ci.yml/badge.svg" alt="CI" />
+    </a>
+    <a href="https://www.npmjs.com/package/@etchkit/cli">
+      <img src="https://img.shields.io/npm/v/@etchkit/cli?label=%40etchkit%2Fcli" alt="npm @etchkit/cli" />
+    </a>
+  </p>
 </div>
 
 ---
@@ -9,8 +17,6 @@
 A copy-paste UI component library built on [Radix UI](https://www.radix-ui.com/) and [Tailwind CSS v4](https://tailwindcss.com/). Square edges, hard 2px borders — no blur, no glow, no radius.
 
 Same model as [shadcn/ui](https://ui.shadcn.com/) — you own the code.
-
-[![npm](https://img.shields.io/npm/v/@etchkit/cli)](https://www.npmjs.com/package/@etchkit/cli) [![npm](https://img.shields.io/npm/v/@etchkit/ui)](https://www.npmjs.com/package/@etchkit/ui) [![npm](https://img.shields.io/npm/v/@etchkit/tailwind)](https://www.npmjs.com/package/@etchkit/tailwind)
 
 ---
 
