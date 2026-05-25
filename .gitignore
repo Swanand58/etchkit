@@ -5,6 +5,10 @@ node_modules/
 dist/
 .next/
 out/
+coverage/
+
+# next.js generated
+next-env.d.ts
 
 # turbo
 .turbo/
