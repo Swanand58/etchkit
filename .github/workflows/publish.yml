@@ -28,17 +28,11 @@ jobs:
       - run: pnpm --filter @etchkit/ui build
       - run: pnpm --filter @etchkit/cli build
 
-      - run: npm publish --access public
+      - run: npm publish --access public --provenance
         working-directory: packages/tailwind
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - run: npm publish --access public
+      - run: npm publish --access public --provenance
         working-directory: packages/ui
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - run: npm publish --access public
+      - run: npm publish --access public --provenance
         working-directory: packages/cli
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
