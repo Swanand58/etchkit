@@ -30,9 +30,15 @@ jobs:
 
       - run: npm publish --access public
         working-directory: packages/tailwind
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - run: npm publish --access public
         working-directory: packages/ui
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - run: npm publish --access public
         working-directory: packages/cli
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
