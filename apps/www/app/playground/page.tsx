@@ -25,9 +25,21 @@ import {
   ScrollArea,
   Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator,
   Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose,
+  AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter,
+  AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel,
+  AspectRatio, Calendar,
+  Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext,
+  CopyButton, EmptyState,
+  InputOTP, InputOTPGroup, InputOTPSlot,
+  Kbd, NumberInput,
+  ResizablePanelGroup, ResizablePanel, ResizableHandle,
+  SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarGroup,
+  SidebarGroupLabel, SidebarMenuItem, SidebarMenuButton,
+  Stepper, Timeline, TimelineItem, TimelineConnector, TimelineDot,
+  TimelineContent, TimelineTitle, TimelineDescription, TimelineTime,
 } from '@etchkit/ui'
 import { toast } from 'sonner'
-import { AlertCircle, Copy, Check, Bold, Italic, Underline, ChevronsUpDown, CalendarDays } from 'lucide-react'
+import { AlertCircle, Copy, Check, Bold, Italic, Underline, ChevronsUpDown, CalendarDays, Inbox, LayoutDashboard, Settings, Users } from 'lucide-react'
 
 interface Theme {
   background: string
@@ -731,6 +743,204 @@ export default function PlaygroundPage() {
                 </DrawerFooter>
               </DrawerContent>
             </Drawer>
+          </Section>
+
+          {/* Alert Dialog */}
+          <Section title="Alert Dialog">
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive">Delete account</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will permanently delete your account and all data.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction>Delete</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </Section>
+
+          {/* Calendar */}
+          <Section title="Calendar">
+            <Calendar mode="single" />
+          </Section>
+
+          {/* Carousel */}
+          <Section title="Carousel">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {[1, 2, 3].map((i) => (
+                  <CarouselItem key={i}>
+                    <div className="border-2 border-foreground p-8 flex items-center justify-center">
+                      <span className="text-2xl font-bold font-mono">{i}</span>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </Section>
+
+          {/* Aspect Ratio */}
+          <Section title="Aspect Ratio">
+            <AspectRatio ratio={16 / 9} className="border-2 border-foreground bg-muted flex items-center justify-center">
+              <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">16 / 9</p>
+            </AspectRatio>
+          </Section>
+
+          {/* Copy Button */}
+          <Section title="Copy Button">
+            <div className="flex items-center gap-3">
+              <code className="text-sm font-mono bg-muted px-2 py-1 border border-foreground/20">
+                npx @etchkit/cli@latest add button
+              </code>
+              <CopyButton value="npx @etchkit/cli@latest add button" />
+            </div>
+          </Section>
+
+          {/* Empty State */}
+          <Section title="Empty State">
+            <EmptyState
+              icon={<Inbox className="h-6 w-6" />}
+              title="No results"
+              description="Nothing matches your current filter."
+              action={<Button size="sm" variant="outline">Clear filters</Button>}
+            />
+          </Section>
+
+          {/* Input OTP */}
+          <Section title="Input OTP">
+            <InputOTP maxLength={6}>
+              <InputOTPGroup>
+                {[0, 1, 2, 3, 4, 5].map((i) => (
+                  <InputOTPSlot key={i} index={i} />
+                ))}
+              </InputOTPGroup>
+            </InputOTP>
+          </Section>
+
+          {/* Kbd */}
+          <Section title="Kbd">
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="flex items-center gap-1">
+                <Kbd>⌘</Kbd><Kbd>K</Kbd>
+              </div>
+              <div className="flex items-center gap-1">
+                <Kbd>Ctrl</Kbd><Kbd>Shift</Kbd><Kbd>P</Kbd>
+              </div>
+              <div className="flex items-center gap-1">
+                <Kbd>Esc</Kbd>
+              </div>
+            </div>
+          </Section>
+
+          {/* Number Input */}
+          <Section title="Number Input">
+            <div className="flex flex-col gap-4">
+              <NumberInput value={0} min={0} max={10} />
+              <NumberInput value={50} min={0} max={100} step={10} />
+            </div>
+          </Section>
+
+          {/* Resizable */}
+          <Section title="Resizable">
+            <ResizablePanelGroup orientation="horizontal" className="h-36 border-2 border-foreground">
+              <ResizablePanel defaultSize={50}>
+                <div className="flex h-full items-center justify-center text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                  Panel 1
+                </div>
+              </ResizablePanel>
+              <ResizableHandle withHandle />
+              <ResizablePanel defaultSize={50}>
+                <div className="flex h-full items-center justify-center text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                  Panel 2
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </Section>
+
+          {/* Sidebar */}
+          <Section title="Sidebar">
+            <SidebarProvider>
+              <div className="flex h-52 w-full border-2 border-foreground overflow-hidden">
+                <Sidebar>
+                  <SidebarHeader>
+                    <p className="text-xs font-medium uppercase tracking-widest">etchkit</p>
+                  </SidebarHeader>
+                  <SidebarContent>
+                    <SidebarGroup>
+                      <SidebarGroupLabel>App</SidebarGroupLabel>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton isActive>
+                          <LayoutDashboard className="h-4 w-4" />
+                          <span>Dashboard</span>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton>
+                          <Users className="h-4 w-4" />
+                          <span>Users</span>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton>
+                          <Settings className="h-4 w-4" />
+                          <span>Settings</span>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    </SidebarGroup>
+                  </SidebarContent>
+                </Sidebar>
+                <div className="flex-1 p-4">
+                  <p className="text-xs text-muted-foreground uppercase tracking-widest">Main content</p>
+                </div>
+              </div>
+            </SidebarProvider>
+          </Section>
+
+          {/* Stepper */}
+          <Section title="Stepper">
+            <Stepper
+              steps={[{ title: 'Account' }, { title: 'Details' }, { title: 'Review' }]}
+              currentStep={1}
+            />
+          </Section>
+
+          {/* Timeline */}
+          <Section title="Timeline">
+            <Timeline>
+              <TimelineItem>
+                <TimelineConnector><TimelineDot /></TimelineConnector>
+                <TimelineContent>
+                  <TimelineTitle>Project started</TimelineTitle>
+                  <TimelineDescription>Monorepo scaffolded.</TimelineDescription>
+                  <TimelineTime>Jan 2025</TimelineTime>
+                </TimelineContent>
+              </TimelineItem>
+              <TimelineItem>
+                <TimelineConnector><TimelineDot /></TimelineConnector>
+                <TimelineContent>
+                  <TimelineTitle>v0.0.1 shipped</TimelineTitle>
+                  <TimelineDescription>38 components published.</TimelineDescription>
+                  <TimelineTime>Mar 2025</TimelineTime>
+                </TimelineContent>
+              </TimelineItem>
+              <TimelineItem>
+                <TimelineConnector><TimelineDot /></TimelineConnector>
+                <TimelineContent>
+                  <TimelineTitle>v0.0.2 — Phase 4</TimelineTitle>
+                  <TimelineDescription>14 more. Now at 52.</TimelineDescription>
+                  <TimelineTime>May 2025</TimelineTime>
+                </TimelineContent>
+              </TimelineItem>
+            </Timeline>
           </Section>
 
         </div>

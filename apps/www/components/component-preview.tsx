@@ -26,9 +26,39 @@ import {
   NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink, navigationMenuTriggerStyle,
   Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator,
   Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose,
+  AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter,
+  AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel,
+  AspectRatio,
+  Calendar,
+  Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext,
+  CopyButton,
+  EmptyState,
+  InputOTP, InputOTPGroup, InputOTPSlot,
+  Kbd,
+  NumberInput,
+  ResizablePanelGroup, ResizablePanel, ResizableHandle,
+  SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarGroup,
+  SidebarGroupLabel, SidebarMenuItem, SidebarMenuButton,
+  Stepper,
+  Timeline, TimelineItem, TimelineConnector, TimelineDot, TimelineContent, TimelineTitle, TimelineDescription, TimelineTime,
 } from '@etchkit/ui'
 import { toast } from 'sonner'
-import { AlertCircle, Info, CalendarDays } from 'lucide-react'
+import { AlertCircle, Info, CalendarDays, Inbox, LayoutDashboard, Settings, Users, Bold, Italic, Underline, ChevronsUpDown } from 'lucide-react'
+import {
+  Accordion, AccordionItem, AccordionTrigger, AccordionContent,
+  Collapsible, CollapsibleTrigger, CollapsibleContent,
+  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
+  Popover, PopoverTrigger, PopoverContent,
+  Progress,
+  RadioGroup, RadioGroupItem,
+  Skeleton,
+  Slider,
+  Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
+  Textarea,
+  Toggle, ToggleGroup, ToggleGroupItem,
+  ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig,
+} from '@etchkit/ui'
+import { Bar, BarChart } from 'recharts'
 
 const previews: Record<string, React.ReactNode> = {
   button: (
@@ -484,6 +514,385 @@ const previews: Record<string, React.ReactNode> = {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
+  ),
+
+  accordion: (
+    <Accordion type="single" collapsible className="w-full max-w-sm">
+      <AccordionItem value="a1">
+        <AccordionTrigger>What is etchkit?</AccordionTrigger>
+        <AccordionContent>No shadows. No softness. Just structure.</AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="a2">
+        <AccordionTrigger>Copy-paste model?</AccordionTrigger>
+        <AccordionContent>You own the code after adding it.</AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="a3">
+        <AccordionTrigger>Tailwind v4 required?</AccordionTrigger>
+        <AccordionContent>Yes, etchkit is built on Tailwind CSS v4.</AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  ),
+
+  collapsible: (
+    <Collapsible className="w-full max-w-sm">
+      <div className="flex items-center justify-between border-2 border-foreground px-3 py-2">
+        <span className="text-sm font-medium">Repositories (3)</span>
+        <CollapsibleTrigger asChild>
+          <Button variant="ghost" size="sm" className="p-0 h-auto border-0">
+            <ChevronsUpDown className="h-4 w-4" />
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+      <div className="border-2 border-t-0 border-foreground px-3 py-2 text-sm">etchkit</div>
+      <CollapsibleContent>
+        <div className="border-2 border-t-0 border-foreground px-3 py-2 text-sm text-muted-foreground">etchkit-docs</div>
+        <div className="border-2 border-t-0 border-foreground px-3 py-2 text-sm text-muted-foreground">etchkit-templates</div>
+      </CollapsibleContent>
+    </Collapsible>
+  ),
+
+  'dropdown-menu': (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">Open menu</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-48">
+        <DropdownMenuLabel>Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Settings</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Log out</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ),
+
+  popover: (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Open popover</Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <p className="text-sm text-muted-foreground">Popover content goes here.</p>
+      </PopoverContent>
+    </Popover>
+  ),
+
+  progress: (
+    <div className="w-full max-w-sm flex flex-col gap-4">
+      <Progress value={33} />
+      <Progress value={66} />
+      <Progress value={100} />
+    </div>
+  ),
+
+  'radio-group': (
+    <RadioGroup defaultValue="opt1">
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="opt1" id="pr1" />
+        <Label htmlFor="pr1">Option one</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="opt2" id="pr2" />
+        <Label htmlFor="pr2">Option two</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="opt3" id="pr3" />
+        <Label htmlFor="pr3">Option three</Label>
+      </div>
+    </RadioGroup>
+  ),
+
+  skeleton: (
+    <div className="flex flex-col gap-3 w-64 bg-background p-4 border-2 border-foreground">
+      <Skeleton className="h-32 w-full" />
+      <Skeleton className="h-4 w-3/4" />
+      <Skeleton className="h-4 w-1/2" />
+    </div>
+  ),
+
+  slider: (
+    <div className="flex flex-col gap-6 w-64">
+      <Slider defaultValue={[30]} max={100} step={1} />
+      <Slider defaultValue={[60]} max={100} step={1} />
+    </div>
+  ),
+
+  table: (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>Alpha</TableCell>
+          <TableCell>Paid</TableCell>
+          <TableCell className="text-right font-mono">$250</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Beta</TableCell>
+          <TableCell>Pending</TableCell>
+          <TableCell className="text-right font-mono">$150</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Gamma</TableCell>
+          <TableCell>Unpaid</TableCell>
+          <TableCell className="text-right font-mono">$350</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  ),
+
+  textarea: (
+    <div className="flex flex-col gap-4 w-full max-w-sm">
+      <Textarea placeholder="Write something…" />
+      <Textarea placeholder="Disabled" disabled />
+    </div>
+  ),
+
+  toggle: (
+    <div className="flex gap-2">
+      <Toggle aria-label="Bold"><Bold className="h-4 w-4" /></Toggle>
+      <Toggle variant="outline" aria-label="Italic" defaultPressed><Italic className="h-4 w-4" /></Toggle>
+      <Toggle aria-label="Underline"><Underline className="h-4 w-4" /></Toggle>
+    </div>
+  ),
+
+  'toggle-group': (
+    <div className="flex flex-col gap-4">
+      <ToggleGroup type="multiple">
+        <ToggleGroupItem value="bold" aria-label="Bold"><Bold className="h-4 w-4" /></ToggleGroupItem>
+        <ToggleGroupItem value="italic" aria-label="Italic"><Italic className="h-4 w-4" /></ToggleGroupItem>
+        <ToggleGroupItem value="underline" aria-label="Underline"><Underline className="h-4 w-4" /></ToggleGroupItem>
+      </ToggleGroup>
+      <ToggleGroup type="single" defaultValue="center">
+        <ToggleGroupItem value="left">Left</ToggleGroupItem>
+        <ToggleGroupItem value="center">Center</ToggleGroupItem>
+        <ToggleGroupItem value="right">Right</ToggleGroupItem>
+      </ToggleGroup>
+    </div>
+  ),
+
+  chart: (() => {
+    const data = [
+      { month: 'Jan', revenue: 4000 },
+      { month: 'Feb', revenue: 3000 },
+      { month: 'Mar', revenue: 5000 },
+      { month: 'Apr', revenue: 4500 },
+      { month: 'May', revenue: 6000 },
+    ]
+    const config: ChartConfig = {
+      revenue: { label: 'Revenue', color: 'hsl(var(--foreground))' },
+    }
+    return (
+      <ChartContainer config={config} className="h-48 w-full">
+        <BarChart data={data}>
+          <Bar dataKey="revenue" fill="var(--color-revenue)" />
+          <ChartTooltip content={<ChartTooltipContent />} />
+        </BarChart>
+      </ChartContainer>
+    )
+  })(),
+
+  'alert-dialog': (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive">Delete account</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your account.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Delete account</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  ),
+
+  'aspect-ratio': (
+    <div className="w-64">
+      <AspectRatio ratio={16 / 9} className="border-2 border-foreground bg-muted flex items-center justify-center">
+        <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">16 / 9</p>
+      </AspectRatio>
+    </div>
+  ),
+
+  calendar: (
+    <Calendar mode="single" />
+  ),
+
+  carousel: (
+    <div className="px-14 w-full max-w-sm">
+      <Carousel className="w-full">
+        <CarouselContent>
+          {[1, 2, 3].map((i) => (
+            <CarouselItem key={i}>
+              <div className="border-2 border-foreground p-10 flex items-center justify-center">
+                <span className="text-2xl font-bold font-mono">{i}</span>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
+  ),
+
+  'copy-button': (
+    <div className="flex flex-col items-center gap-4">
+      <CopyButton value="npx @etchkit/cli@latest add button" />
+      <p className="text-xs text-muted-foreground">Click to copy</p>
+    </div>
+  ),
+
+  'empty-state': (
+    <EmptyState
+      icon={<Inbox className="h-6 w-6" />}
+      title="No results"
+      description="No components match your current filter. Try adjusting your search."
+      action={<Button size="sm" variant="outline">Clear filters</Button>}
+    />
+  ),
+
+  'input-otp': (
+    <InputOTP maxLength={6}>
+      <InputOTPGroup>
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <InputOTPSlot key={i} index={i} />
+        ))}
+      </InputOTPGroup>
+    </InputOTP>
+  ),
+
+  kbd: (
+    <div className="flex flex-wrap items-center gap-3">
+      <div className="flex items-center gap-1">
+        <Kbd>⌘</Kbd><Kbd>K</Kbd>
+      </div>
+      <div className="flex items-center gap-1">
+        <Kbd>Ctrl</Kbd><Kbd>Shift</Kbd><Kbd>P</Kbd>
+      </div>
+      <div className="flex items-center gap-1">
+        <Kbd>Esc</Kbd>
+      </div>
+    </div>
+  ),
+
+  'number-input': (
+    <div className="flex flex-col gap-4">
+      <NumberInput value={0} min={0} max={10} />
+      <NumberInput value={50} min={0} max={100} step={10} />
+    </div>
+  ),
+
+  resizable: (
+    <ResizablePanelGroup orientation="horizontal" className="h-40 max-w-sm border-2 border-foreground">
+      <ResizablePanel defaultSize={50}>
+        <div className="flex h-full items-center justify-center text-xs font-medium uppercase tracking-widest text-muted-foreground">
+          Panel 1
+        </div>
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={50}>
+        <div className="flex h-full items-center justify-center text-xs font-medium uppercase tracking-widest text-muted-foreground">
+          Panel 2
+        </div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  ),
+
+  sidebar: (
+    <SidebarProvider>
+      <div className="flex h-48 w-full border-2 border-foreground overflow-hidden">
+        <Sidebar>
+          <SidebarHeader>
+            <p className="text-xs font-medium uppercase tracking-widest">etchkit</p>
+          </SidebarHeader>
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>App</SidebarGroupLabel>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive>
+                  <LayoutDashboard className="h-4 w-4" />
+                  <span>Dashboard</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <Users className="h-4 w-4" />
+                  <span>Users</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <Settings className="h-4 w-4" />
+                  <span>Settings</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarGroup>
+          </SidebarContent>
+        </Sidebar>
+        <div className="flex-1 p-4">
+          <p className="text-xs text-muted-foreground uppercase tracking-widest">Main content</p>
+        </div>
+      </div>
+    </SidebarProvider>
+  ),
+
+  stepper: (
+    <Stepper
+      steps={[
+        { title: 'Account' },
+        { title: 'Details' },
+        { title: 'Review' },
+      ]}
+      currentStep={1}
+    />
+  ),
+
+  timeline: (
+    <Timeline>
+      <TimelineItem>
+        <TimelineConnector>
+          <TimelineDot />
+        </TimelineConnector>
+        <TimelineContent>
+          <TimelineTitle>Project started</TimelineTitle>
+          <TimelineDescription>Monorepo scaffolded with Turborepo.</TimelineDescription>
+          <TimelineTime>Jan 2025</TimelineTime>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineConnector>
+          <TimelineDot />
+        </TimelineConnector>
+        <TimelineContent>
+          <TimelineTitle>v0.0.1 shipped</TimelineTitle>
+          <TimelineDescription>First 38 components published to npm.</TimelineDescription>
+          <TimelineTime>Mar 2025</TimelineTime>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineConnector>
+          <TimelineDot />
+        </TimelineConnector>
+        <TimelineContent>
+          <TimelineTitle>v0.0.2 — Phase 4</TimelineTitle>
+          <TimelineDescription>14 more components. Now at 52.</TimelineDescription>
+          <TimelineTime>May 2025</TimelineTime>
+        </TimelineContent>
+      </TimelineItem>
+    </Timeline>
   ),
 }
 

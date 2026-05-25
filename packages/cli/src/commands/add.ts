@@ -38,6 +38,20 @@ const RADIX_DEPS: Record<string, string[]> = {
   sheet: [],
   breadcrumb: ['@radix-ui/react-slot'],
   pagination: [],
+  'alert-dialog': ['@radix-ui/react-alert-dialog'],
+  'aspect-ratio': ['@radix-ui/react-aspect-ratio'],
+  calendar: ['react-day-picker', 'date-fns'],
+  carousel: ['embla-carousel-react'],
+  chart: ['recharts'],
+  'copy-button': [],
+  'empty-state': [],
+  'input-otp': ['input-otp'],
+  kbd: [],
+  'number-input': [],
+  resizable: ['react-resizable-panels'],
+  sidebar: [],
+  stepper: [],
+  timeline: [],
 }
 
 const COMMON_DEPS = ['clsx', 'tailwind-merge', 'class-variance-authority', 'lucide-react']

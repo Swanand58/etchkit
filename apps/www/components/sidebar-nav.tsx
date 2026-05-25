@@ -5,12 +5,14 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 const components = [
-  'accordion', 'alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card',
-  'checkbox', 'collapsible', 'command', 'context-menu', 'dialog', 'drawer',
-  'dropdown-menu', 'form', 'hover-card', 'input', 'label', 'menubar',
-  'navigation-menu', 'pagination', 'popover', 'progress', 'radio-group',
-  'scroll-area', 'select', 'separator', 'sheet', 'skeleton', 'slider',
-  'sonner', 'switch', 'table', 'tabs', 'textarea', 'toggle', 'toggle-group',
+  'accordion', 'alert', 'alert-dialog', 'aspect-ratio', 'avatar', 'badge',
+  'breadcrumb', 'button', 'calendar', 'card', 'carousel', 'chart', 'checkbox',
+  'collapsible', 'command', 'context-menu', 'copy-button', 'dialog', 'drawer',
+  'dropdown-menu', 'empty-state', 'form', 'hover-card', 'input', 'input-otp',
+  'kbd', 'label', 'menubar', 'navigation-menu', 'number-input', 'pagination',
+  'popover', 'progress', 'radio-group', 'resizable', 'scroll-area', 'select',
+  'separator', 'sheet', 'sidebar', 'skeleton', 'slider', 'sonner', 'stepper',
+  'switch', 'table', 'tabs', 'textarea', 'timeline', 'toggle', 'toggle-group',
   'tooltip',
 ]
 

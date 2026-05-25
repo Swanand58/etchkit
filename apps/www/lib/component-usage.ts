@@ -1003,4 +1003,771 @@ export function Example() {
 }`,
     },
   ],
+
+  breadcrumb: [
+    {
+      title: 'Basic',
+      code: `import {
+  Breadcrumb, BreadcrumbList, BreadcrumbItem,
+  BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb'
+
+export function Example() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem><BreadcrumbLink href="/docs">Docs</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem><BreadcrumbPage>Button</BreadcrumbPage></BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  )
+}`,
+    },
+  ],
+
+  pagination: [
+    {
+      title: 'Basic',
+      code: `import {
+  Pagination, PaginationContent, PaginationItem,
+  PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis,
+} from '@/components/ui/pagination'
+
+export function Example() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+        <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
+        <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
+        <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
+        <PaginationItem><PaginationEllipsis /></PaginationItem>
+        <PaginationItem><PaginationNext href="#" /></PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  )
+}`,
+    },
+  ],
+
+  sheet: [
+    {
+      title: 'Basic',
+      code: `import {
+  Sheet, SheetTrigger, SheetContent, SheetHeader,
+  SheetTitle, SheetDescription, SheetFooter, SheetClose,
+} from '@/components/ui/sheet'
+import { Button } from '@/components/ui/button'
+
+export function Example() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Open sheet</Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>Make changes to your profile here.</SheetDescription>
+        </SheetHeader>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </SheetClose>
+          <Button>Save</Button>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  )
+}`,
+    },
+  ],
+
+  'hover-card': [
+    {
+      title: 'Basic',
+      code: `import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card'
+import { Button } from '@/components/ui/button'
+
+export function Example() {
+  return (
+    <HoverCard>
+      <HoverCardTrigger asChild>
+        <Button variant="outline">@etchkit</Button>
+      </HoverCardTrigger>
+      <HoverCardContent>
+        <p className="text-sm font-medium">etchkit</p>
+        <p className="text-xs text-muted-foreground">No shadows. No softness. Just structure.</p>
+      </HoverCardContent>
+    </HoverCard>
+  )
+}`,
+    },
+  ],
+
+  'context-menu': [
+    {
+      title: 'Basic',
+      code: `import {
+  ContextMenu, ContextMenuTrigger, ContextMenuContent,
+  ContextMenuItem, ContextMenuLabel, ContextMenuSeparator,
+} from '@/components/ui/context-menu'
+
+export function Example() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger className="flex h-24 w-48 items-center justify-center border-2 border-dashed border-foreground text-xs text-muted-foreground">
+        Right-click here
+      </ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuLabel>Actions</ContextMenuLabel>
+        <ContextMenuSeparator />
+        <ContextMenuItem>Copy</ContextMenuItem>
+        <ContextMenuItem>Paste</ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuItem>Delete</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  )
+}`,
+    },
+  ],
+
+  menubar: [
+    {
+      title: 'Basic',
+      code: `import {
+  Menubar, MenubarMenu, MenubarTrigger, MenubarContent,
+  MenubarItem, MenubarSeparator,
+} from '@/components/ui/menubar'
+
+export function Example() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>New</MenubarItem>
+          <MenubarItem>Open</MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>Save</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>Undo</MenubarItem>
+          <MenubarItem>Redo</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  )
+}`,
+    },
+  ],
+
+  'scroll-area': [
+    {
+      title: 'Basic',
+      code: `import { ScrollArea } from '@/components/ui/scroll-area'
+
+export function Example() {
+  return (
+    <ScrollArea className="h-48 w-48 border-2 border-foreground">
+      <div className="p-4">
+        {Array.from({ length: 20 }, (_, i) => (
+          <p key={i} className="text-sm py-1 border-b border-foreground/20">{i + 1}. List item</p>
+        ))}
+      </div>
+    </ScrollArea>
+  )
+}`,
+    },
+  ],
+
+  sonner: [
+    {
+      title: 'Toast variants',
+      code: `'use client'
+
+import { Button } from '@/components/ui/button'
+import { toast } from 'sonner'
+
+export function Example() {
+  return (
+    <div className="flex gap-2">
+      <Button onClick={() => toast('Event created', { description: 'Saved.' })}>
+        Default
+      </Button>
+      <Button variant="outline" onClick={() => toast.success('Saved!')}>
+        Success
+      </Button>
+      <Button variant="destructive" onClick={() => toast.error('Failed!')}>
+        Error
+      </Button>
+    </div>
+  )
+}`,
+    },
+  ],
+
+  'navigation-menu': [
+    {
+      title: 'Basic',
+      code: `import {
+  NavigationMenu, NavigationMenuList, NavigationMenuItem,
+  NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu'
+
+export function Example() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <div className="grid gap-3 p-4 w-[300px]">
+              <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+                Introduction
+              </NavigationMenuLink>
+              <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+                Installation
+              </NavigationMenuLink>
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+            Components
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  )
+}`,
+    },
+  ],
+
+  form: [
+    {
+      title: 'With zod validation',
+      code: `'use client'
+
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import {
+  Form, FormField, FormItem, FormLabel, FormControl, FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+})
+
+export function Example() {
+  const form = useForm({ resolver: zodResolver(schema) })
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(console.log)} className="flex flex-col gap-4 w-80">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input type="email" placeholder="you@example.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input type="password" placeholder="Min 8 chars" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
+  )
+}`,
+    },
+  ],
+
+  command: [
+    {
+      title: 'Basic',
+      code: `import {
+  Command, CommandInput, CommandList, CommandEmpty,
+  CommandGroup, CommandItem, CommandSeparator,
+} from '@/components/ui/command'
+
+export function Example() {
+  return (
+    <Command className="border-2 border-foreground w-72">
+      <CommandInput placeholder="Search…" />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Components">
+          <CommandItem>Button</CommandItem>
+          <CommandItem>Card</CommandItem>
+          <CommandItem>Input</CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Pages">
+          <CommandItem>Docs</CommandItem>
+          <CommandItem>Playground</CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  )
+}`,
+    },
+  ],
+
+  drawer: [
+    {
+      title: 'Basic',
+      code: `import {
+  Drawer, DrawerTrigger, DrawerContent, DrawerHeader,
+  DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose,
+} from '@/components/ui/drawer'
+import { Button } from '@/components/ui/button'
+
+export function Example() {
+  return (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open Drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Drawer title</DrawerTitle>
+          <DrawerDescription>Swipe down or click outside to close.</DrawerDescription>
+        </DrawerHeader>
+        <div className="px-4 pb-4">
+          <p className="text-sm text-muted-foreground">Drawer content goes here.</p>
+        </div>
+        <DrawerFooter>
+          <DrawerClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  )
+}`,
+    },
+  ],
+
+  'alert-dialog': [
+    {
+      title: 'Destructive confirmation',
+      code: `import {
+  AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader,
+  AlertDialogFooter, AlertDialogTitle, AlertDialogDescription,
+  AlertDialogAction, AlertDialogCancel,
+} from '@/components/ui/alert-dialog'
+import { Button } from '@/components/ui/button'
+
+export function Example() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive">Delete account</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your account.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Delete account</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+}`,
+    },
+  ],
+
+  'aspect-ratio': [
+    {
+      title: 'Video embed',
+      code: `import { AspectRatio } from '@/components/ui/aspect-ratio'
+
+export function Example() {
+  return (
+    <div className="w-80">
+      <AspectRatio ratio={16 / 9}>
+        <img
+          src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd"
+          alt="Photo"
+          className="h-full w-full object-cover border-2 border-foreground"
+        />
+      </AspectRatio>
+    </div>
+  )
+}`,
+    },
+  ],
+
+  calendar: [
+    {
+      title: 'Single date',
+      code: `'use client'
+
+import { useState } from 'react'
+import { Calendar } from '@/components/ui/calendar'
+
+export function Example() {
+  const [date, setDate] = useState<Date | undefined>(new Date())
+
+  return (
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+    />
+  )
+}`,
+    },
+  ],
+
+  carousel: [
+    {
+      title: 'Basic',
+      code: `import {
+  Carousel, CarouselContent, CarouselItem,
+  CarouselPrevious, CarouselNext,
+} from '@/components/ui/carousel'
+
+export function Example() {
+  return (
+    <Carousel className="w-full max-w-xs">
+      <CarouselContent>
+        {[1, 2, 3, 4, 5].map((i) => (
+          <CarouselItem key={i}>
+            <div className="border-2 border-foreground p-10 flex items-center justify-center">
+              <span className="text-2xl font-bold font-mono">{i}</span>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  )
+}`,
+    },
+  ],
+
+  chart: [
+    {
+      title: 'Bar chart',
+      code: `'use client'
+
+import { Bar, BarChart } from 'recharts'
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  type ChartConfig,
+} from '@/components/ui/chart'
+
+const data = [
+  { month: 'Jan', revenue: 4000 },
+  { month: 'Feb', revenue: 3000 },
+  { month: 'Mar', revenue: 5000 },
+  { month: 'Apr', revenue: 4500 },
+  { month: 'May', revenue: 6000 },
+]
+
+const config: ChartConfig = {
+  revenue: { label: 'Revenue', color: 'hsl(var(--foreground))' },
+}
+
+export function Example() {
+  return (
+    <ChartContainer config={config} className="h-48 w-full">
+      <BarChart data={data}>
+        <Bar dataKey="revenue" fill="var(--color-revenue)" />
+        <ChartTooltip content={<ChartTooltipContent />} />
+      </BarChart>
+    </ChartContainer>
+  )
+}`,
+    },
+  ],
+
+  'copy-button': [
+    {
+      title: 'Basic',
+      code: `import { CopyButton } from '@/components/ui/copy-button'
+
+export function Example() {
+  return (
+    <div className="flex items-center gap-3">
+      <code className="text-sm font-mono bg-muted px-2 py-1">npx @etchkit/cli@latest add button</code>
+      <CopyButton value="npx @etchkit/cli@latest add button" />
+    </div>
+  )
+}`,
+    },
+  ],
+
+  'empty-state': [
+    {
+      title: 'With action',
+      code: `import { EmptyState } from '@/components/ui/empty-state'
+import { Button } from '@/components/ui/button'
+import { Inbox } from 'lucide-react'
+
+export function Example() {
+  return (
+    <EmptyState
+      icon={<Inbox className="h-6 w-6" />}
+      title="No results"
+      description="No components match your current filter. Try adjusting your search."
+      action={<Button size="sm" variant="outline">Clear filters</Button>}
+    />
+  )
+}`,
+    },
+  ],
+
+  'input-otp': [
+    {
+      title: 'Basic',
+      code: `import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp'
+
+export function Example() {
+  return (
+    <InputOTP maxLength={6}>
+      <InputOTPGroup>
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <InputOTPSlot key={i} index={i} />
+        ))}
+      </InputOTPGroup>
+    </InputOTP>
+  )
+}`,
+    },
+  ],
+
+  kbd: [
+    {
+      title: 'Shortcuts',
+      code: `import { Kbd } from '@/components/ui/kbd'
+
+export function Example() {
+  return (
+    <div className="flex flex-col gap-3 text-sm">
+      <div className="flex items-center gap-4">
+        <span className="text-muted-foreground w-32">Command palette</span>
+        <div className="flex items-center gap-1"><Kbd>⌘</Kbd><Kbd>K</Kbd></div>
+      </div>
+      <div className="flex items-center gap-4">
+        <span className="text-muted-foreground w-32">Command menu</span>
+        <div className="flex items-center gap-1"><Kbd>Ctrl</Kbd><Kbd>Shift</Kbd><Kbd>P</Kbd></div>
+      </div>
+    </div>
+  )
+}`,
+    },
+  ],
+
+  'number-input': [
+    {
+      title: 'With min/max',
+      code: `'use client'
+
+import { useState } from 'react'
+import { NumberInput } from '@/components/ui/number-input'
+import { Label } from '@/components/ui/label'
+
+export function Example() {
+  const [qty, setQty] = useState(1)
+
+  return (
+    <div className="flex flex-col gap-1.5">
+      <Label>Quantity</Label>
+      <NumberInput value={qty} onChange={setQty} min={1} max={99} />
+    </div>
+  )
+}`,
+    },
+  ],
+
+  resizable: [
+    {
+      title: 'Horizontal panels',
+      code: `import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from '@/components/ui/resizable'
+
+export function Example() {
+  return (
+    <ResizablePanelGroup orientation="horizontal" className="h-40 max-w-md border-2 border-foreground">
+      <ResizablePanel defaultSize={50}>
+        <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+          Panel 1
+        </div>
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={50}>
+        <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+          Panel 2
+        </div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  )
+}`,
+    },
+  ],
+
+  sidebar: [
+    {
+      title: 'Basic layout',
+      code: `import {
+  SidebarProvider, Sidebar, SidebarHeader, SidebarContent,
+  SidebarGroup, SidebarGroupLabel, SidebarMenuItem, SidebarMenuButton,
+} from '@/components/ui/sidebar'
+import { LayoutDashboard, Settings, Users } from 'lucide-react'
+
+export function Example() {
+  return (
+    <SidebarProvider>
+      <div className="flex h-64 border-2 border-foreground overflow-hidden">
+        <Sidebar>
+          <SidebarHeader>
+            <p className="text-xs font-medium uppercase tracking-widest">App</p>
+          </SidebarHeader>
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive>
+                  <LayoutDashboard className="h-4 w-4" />
+                  <span>Dashboard</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <Users className="h-4 w-4" />
+                  <span>Users</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <Settings className="h-4 w-4" />
+                  <span>Settings</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarGroup>
+          </SidebarContent>
+        </Sidebar>
+        <main className="flex-1 p-6">
+          <p className="text-sm text-muted-foreground">Main content area</p>
+        </main>
+      </div>
+    </SidebarProvider>
+  )
+}`,
+    },
+  ],
+
+  stepper: [
+    {
+      title: 'Horizontal',
+      code: `import { Stepper } from '@/components/ui/stepper'
+
+const steps = [
+  { title: 'Account', description: 'Create your account' },
+  { title: 'Details', description: 'Fill in your details' },
+  { title: 'Review', description: 'Confirm and submit' },
+]
+
+export function Example() {
+  return <Stepper steps={steps} currentStep={1} />
+}`,
+    },
+    {
+      title: 'Vertical',
+      code: `import { Stepper } from '@/components/ui/stepper'
+
+const steps = [
+  { title: 'Account' },
+  { title: 'Payment' },
+  { title: 'Confirm' },
+]
+
+export function Example() {
+  return <Stepper steps={steps} currentStep={2} orientation="vertical" />
+}`,
+    },
+  ],
+
+  timeline: [
+    {
+      title: 'Basic',
+      code: `import {
+  Timeline, TimelineItem, TimelineConnector, TimelineDot,
+  TimelineContent, TimelineTitle, TimelineDescription, TimelineTime,
+} from '@/components/ui/timeline'
+
+export function Example() {
+  return (
+    <Timeline>
+      <TimelineItem>
+        <TimelineConnector><TimelineDot /></TimelineConnector>
+        <TimelineContent>
+          <TimelineTitle>Project started</TimelineTitle>
+          <TimelineDescription>Monorepo scaffolded with Turborepo.</TimelineDescription>
+          <TimelineTime>Jan 2025</TimelineTime>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineConnector><TimelineDot /></TimelineConnector>
+        <TimelineContent>
+          <TimelineTitle>v0.0.1 shipped</TimelineTitle>
+          <TimelineDescription>38 components published to npm.</TimelineDescription>
+          <TimelineTime>Mar 2025</TimelineTime>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineConnector><TimelineDot /></TimelineConnector>
+        <TimelineContent>
+          <TimelineTitle>v0.0.2 — Phase 4</TimelineTitle>
+          <TimelineDescription>14 more components. Now at 52.</TimelineDescription>
+          <TimelineTime>May 2025</TimelineTime>
+        </TimelineContent>
+      </TimelineItem>
+    </Timeline>
+  )
+}`,
+    },
+  ],
 }

@@ -45,6 +45,20 @@ const componentMeta: Record<string, { title: string; description: string }> = {
   form: { title: 'Form', description: 'Form validation wrapper for react-hook-form. FormField, FormItem, FormLabel, FormControl, FormMessage.' },
   command: { title: 'Command', description: 'Command palette / search dialog. bg-foreground on selected item. Built on cmdk.' },
   drawer: { title: 'Drawer', description: 'Bottom drawer with drag handle. Slides up from bottom edge. Built on Vaul.' },
+  'alert-dialog': { title: 'Alert Dialog', description: 'Modal requiring explicit user confirmation. Destructive action pattern. Built on Radix AlertDialog.' },
+  'aspect-ratio': { title: 'Aspect Ratio', description: 'Maintains a consistent width/height ratio. Built on Radix AspectRatio.' },
+  calendar: { title: 'Calendar', description: 'Date picker calendar. Square cells, 2px border on today, filled on selected. Built on react-day-picker v10.' },
+  carousel: { title: 'Carousel', description: 'Horizontal or vertical slide carousel. Built on Embla Carousel.' },
+  chart: { title: 'Chart', description: 'Recharts wrapper with etchkit styling. ChartContainer, ChartTooltipContent, ChartLegendContent.' },
+  'copy-button': { title: 'Copy Button', description: 'Clipboard copy with visual feedback. Copy icon → Check icon after 2s. etchkit exclusive.' },
+  'empty-state': { title: 'Empty State', description: 'Dashed-border empty state container with icon, title, description, and action slot. etchkit exclusive.' },
+  'input-otp': { title: 'Input OTP', description: 'One-time password input with individual slot styling. Built on input-otp.' },
+  kbd: { title: 'Kbd', description: 'Keyboard shortcut badge. Square with 2px border, monospace font. etchkit exclusive.' },
+  'number-input': { title: 'Number Input', description: '[ − ][ value ][ + ] spinner with min/max/step clamping. etchkit exclusive.' },
+  resizable: { title: 'Resizable', description: 'Draggable panel layout. Built on react-resizable-panels v4.' },
+  sidebar: { title: 'Sidebar', description: 'Collapsible application sidebar with context-based toggle. w-64 / w-14. etchkit exclusive.' },
+  stepper: { title: 'Stepper', description: 'Horizontal or vertical step indicator. Completed steps show filled Check. etchkit exclusive.' },
+  timeline: { title: 'Timeline', description: 'Vertical timeline with dot, connector line, title, description, and time. etchkit exclusive.' },
 }
 
 export function generateStaticParams() {

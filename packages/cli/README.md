@@ -24,9 +24,11 @@ npx @etchkit/cli@latest add input
 
 Components are written to `src/components/ui/` by default.
 
-## Available components
+## Available components (52)
 
-`alert` `avatar` `badge` `button` `card` `checkbox` `dialog` `input` `label` `select` `separator` `switch` `tabs` `tooltip`
+`accordion` `alert` `alert-dialog` `aspect-ratio` `avatar` `badge` `breadcrumb` `button` `calendar` `card` `carousel` `chart` `checkbox` `collapsible` `command` `context-menu` `copy-button` `dialog` `drawer` `dropdown-menu` `empty-state` `form` `hover-card` `input` `input-otp` `kbd` `label` `menubar` `navigation-menu` `number-input` `pagination` `popover` `progress` `radio-group` `resizable` `scroll-area` `select` `separator` `sheet` `sidebar` `skeleton` `slider` `sonner` `stepper` `switch` `table` `tabs` `textarea` `timeline` `toggle` `toggle-group` `tooltip`
+
+**etchkit-exclusive** (not in shadcn/ui): `copy-button` `empty-state` `kbd` `number-input` `sidebar` `stepper` `timeline`
 
 ## Requirements
 

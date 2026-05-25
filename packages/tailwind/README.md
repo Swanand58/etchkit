@@ -19,18 +19,21 @@ In your global CSS file:
 @import "@etchkit/tailwind";
 ```
 
-That's it. All design tokens are available as CSS custom properties:
+That's it. All design tokens are available as CSS custom properties.
 
-| Token | Default |
-|-------|---------|
-| `--background` | `0 0% 100%` |
-| `--foreground` | `0 0% 3.9%` |
-| `--border` | `0 0% 3.9%` |
-| `--muted` | `0 0% 96%` |
-| `--destructive` | `0 84% 60%` |
-| `--radius` | `0px` |
+## Design tokens
 
-Dark mode is supported via the `.dark` class.
+| Token | Light | Dark |
+|-------|-------|------|
+| `--background` | `oklch(1 0 0)` | `oklch(0.145 0 0)` |
+| `--foreground` | `oklch(0.145 0 0)` | `oklch(0.985 0 0)` |
+| `--muted` | `oklch(0.97 0 0)` | `oklch(0.269 0 0)` |
+| `--muted-foreground` | `oklch(0.556 0 0)` | `oklch(0.708 0 0)` |
+| `--border` | `oklch(0.922 0 0)` | `oklch(0.269 0 0)` |
+| `--destructive` | `oklch(0.577 0.245 27.325)` | `oklch(0.704 0.191 22.216)` |
+| `--radius` | `0px` | `0px` |
+
+Dark mode is supported via the `.dark` class on `<html>`.
 
 ## Customization
 
@@ -41,8 +44,9 @@ Override any token in your own CSS after the import:
 @import "@etchkit/tailwind";
 
 :root {
-  --background: 214 60% 97%;
-  --foreground: 214 80% 10%;
+  --background: oklch(0.97 0.01 214);
+  --foreground: oklch(0.15 0.05 214);
+  --radius: 4px;
 }
 ```
 
