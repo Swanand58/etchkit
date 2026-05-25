@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -19,17 +21,18 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
-
-      - name: Authenticate with npm
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          registry-url: 'https://registry.npmjs.org'
 
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm --filter @etchkit/ui build
       - run: pnpm --filter @etchkit/cli build
 
-      - run: pnpm --filter @etchkit/tailwind publish --access public --no-git-checks
-      - run: pnpm --filter @etchkit/ui publish --access public --no-git-checks
-      - run: pnpm --filter @etchkit/cli publish --access public --no-git-checks
+      - run: npm publish --access public
+        working-directory: packages/tailwind
+
+      - run: npm publish --access public
+        working-directory: packages/ui
+
+      - run: npm publish --access public
+        working-directory: packages/cli
