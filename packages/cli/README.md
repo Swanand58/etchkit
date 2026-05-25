@@ -32,7 +32,7 @@ Components are written to `src/components/ui/` by default.
 
 ## Requirements
 
-- React 18+
+- React 19+
 - Tailwind CSS v4
 - TypeScript (recommended)
 
