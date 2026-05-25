@@ -17,6 +17,7 @@ const mockSpinner = {
   start: vi.fn().mockReturnThis(),
   succeed: vi.fn().mockReturnThis(),
   warn: vi.fn().mockReturnThis(),
+  stop: vi.fn().mockReturnThis(),
 }
 vi.mock('ora', () => ({
   default: vi.fn(() => mockSpinner),
@@ -41,17 +42,22 @@ const mockExit = vi.spyOn(process, 'exit').mockImplementation((code?: string | n
 vi.spyOn(console, 'error').mockImplementation(() => {})
 vi.spyOn(console, 'log').mockImplementation(() => {})
 
-const config = { typescript: true, componentsDir: 'components/ui' }
+const config = { typescript: true, componentsDir: 'components/ui', registry: 'https://etchkit-www.vercel.app/registry' }
 const registryEntry = { name: 'button', source: 'export function Button() { return null }' }
+
+function mockFetch(entry: object, ok = true) {
+  global.fetch = vi.fn().mockResolvedValue({
+    ok,
+    json: vi.fn().mockResolvedValue(entry),
+  } as unknown as Response)
+}
 
 function setupHappyPath(pnpm = true) {
   vi.mocked(fs.pathExists)
     .mockResolvedValueOnce(true as never)   // config
-    .mockResolvedValueOnce(true as never)   // registry file
     .mockResolvedValueOnce(pnpm as never)   // pnpm-lock.yaml
-  vi.mocked(fs.readJSON)
-    .mockResolvedValueOnce(config as never)
-    .mockResolvedValueOnce(registryEntry as never)
+  vi.mocked(fs.readJSON).mockResolvedValueOnce(config as never)
+  mockFetch(registryEntry)
   vi.mocked(fs.ensureDir).mockResolvedValue(undefined as never)
   vi.mocked(fs.writeFile).mockResolvedValue(undefined as never)
   vi.mocked(execaCommand).mockResolvedValue(undefined as never)
@@ -63,6 +69,7 @@ describe('add command', () => {
     mockSpinner.start.mockReturnThis()
     mockSpinner.succeed.mockReturnThis()
     mockSpinner.warn.mockReturnThis()
+    mockSpinner.stop.mockReturnThis()
   })
 
   it('exits 1 when etchkit.config.json not found', async () => {
@@ -72,10 +79,9 @@ describe('add command', () => {
   })
 
   it('exits 1 when component not in registry', async () => {
-    vi.mocked(fs.pathExists)
-      .mockResolvedValueOnce(true as never)
-      .mockResolvedValueOnce(false as never)
+    vi.mocked(fs.pathExists).mockResolvedValueOnce(true as never)
     vi.mocked(fs.readJSON).mockResolvedValueOnce(config as never)
+    mockFetch({}, false)
     await expect(add('nonexistent')).rejects.toThrow('process.exit(1)')
     expect(mockExit).toHaveBeenCalledWith(1)
   })
@@ -106,11 +112,9 @@ describe('add command', () => {
   it('writes .jsx when typescript is false', async () => {
     vi.mocked(fs.pathExists)
       .mockResolvedValueOnce(true as never)
-      .mockResolvedValueOnce(true as never)
       .mockResolvedValueOnce(false as never)
-    vi.mocked(fs.readJSON)
-      .mockResolvedValueOnce({ typescript: false, componentsDir: 'components/ui' } as never)
-      .mockResolvedValueOnce(registryEntry as never)
+    vi.mocked(fs.readJSON).mockResolvedValueOnce({ typescript: false, componentsDir: 'components/ui', registry: config.registry } as never)
+    mockFetch(registryEntry)
     vi.mocked(fs.ensureDir).mockResolvedValue(undefined as never)
     vi.mocked(fs.writeFile).mockResolvedValue(undefined as never)
     vi.mocked(execaCommand).mockResolvedValue(undefined as never)
@@ -124,11 +128,9 @@ describe('add command', () => {
   it('uses default componentsDir when missing from config', async () => {
     vi.mocked(fs.pathExists)
       .mockResolvedValueOnce(true as never)
-      .mockResolvedValueOnce(true as never)
       .mockResolvedValueOnce(false as never)
-    vi.mocked(fs.readJSON)
-      .mockResolvedValueOnce({ typescript: true } as never)
-      .mockResolvedValueOnce(registryEntry as never)
+    vi.mocked(fs.readJSON).mockResolvedValueOnce({ typescript: true, registry: config.registry } as never)
+    mockFetch(registryEntry)
     vi.mocked(fs.ensureDir).mockResolvedValue(undefined as never)
     vi.mocked(fs.writeFile).mockResolvedValue(undefined as never)
     vi.mocked(execaCommand).mockResolvedValue(undefined as never)
@@ -157,11 +159,9 @@ describe('add command', () => {
   it('only installs common deps for component with no radix deps', async () => {
     vi.mocked(fs.pathExists)
       .mockResolvedValueOnce(true as never)
-      .mockResolvedValueOnce(true as never)
       .mockResolvedValueOnce(false as never)
-    vi.mocked(fs.readJSON)
-      .mockResolvedValueOnce(config as never)
-      .mockResolvedValueOnce({ name: 'kbd', source: 'export {}' } as never)
+    vi.mocked(fs.readJSON).mockResolvedValueOnce(config as never)
+    mockFetch({ name: 'kbd', source: 'export {}' })
     vi.mocked(fs.ensureDir).mockResolvedValue(undefined as never)
     vi.mocked(fs.writeFile).mockResolvedValue(undefined as never)
     vi.mocked(execaCommand).mockResolvedValue(undefined as never)

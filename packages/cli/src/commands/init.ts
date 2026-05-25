@@ -79,7 +79,7 @@ export async function init() {
     framework: answers.framework,
     typescript: answers.typescript,
     componentsDir: answers.componentsDir,
-    registry: 'https://etchkit.dev/registry',
+    registry: 'https://etchkit-www.vercel.app/registry',
   }
 
   await fs.writeJSON(path.join(cwd, 'etchkit.config.json'), config, { spaces: 2 })

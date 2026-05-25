@@ -4,8 +4,6 @@ import pc from 'picocolors'
 import ora from 'ora'
 import { execaCommand } from 'execa'
 
-const REGISTRY_BASE = path.resolve(__dirname, '../../../../registry/components')
-
 const RADIX_DEPS: Record<string, string[]> = {
   accordion: ['@radix-ui/react-accordion'],
   avatar: ['@radix-ui/react-avatar'],
@@ -67,16 +65,25 @@ export async function add(component: string) {
 
   const config = await fs.readJSON(configPath)
   const componentsDir = path.join(cwd, config.componentsDir ?? 'components/ui')
-  const registryFile = path.join(REGISTRY_BASE, `${component}.json`)
-
-  if (!(await fs.pathExists(registryFile))) {
-    console.error(pc.red(`Component "${component}" not found in registry.`))
-    process.exit(1)
-  }
+  const registryBase = config.registry ?? 'https://etchkit-www.vercel.app/registry'
+  const registryUrl = `${registryBase}/components/${component}.json`
 
   const spinner = ora(`Adding ${component}…`).start()
 
-  const entry = await fs.readJSON(registryFile)
+  let entry: { name: string; source: string }
+  try {
+    const res = await fetch(registryUrl)
+    if (!res.ok) {
+      spinner.stop()
+      console.error(pc.red(`Component "${component}" not found in registry.`))
+      process.exit(1)
+    }
+    entry = await res.json() as { name: string; source: string }
+  } catch {
+    spinner.stop()
+    console.error(pc.red(`Failed to fetch registry. Check your internet connection.`))
+    process.exit(1)
+  }
   const ext = config.typescript ? 'tsx' : 'jsx'
   const outPath = path.join(componentsDir, `${component}.${ext}`)
 
