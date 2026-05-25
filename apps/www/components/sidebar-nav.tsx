@@ -5,9 +5,11 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 const components = [
-  'alert', 'avatar', 'badge', 'button', 'card',
-  'checkbox', 'dialog', 'input', 'label', 'select',
-  'separator', 'switch', 'tabs', 'tooltip',
+  'accordion', 'alert', 'avatar', 'badge', 'button', 'card',
+  'checkbox', 'collapsible', 'dialog', 'dropdown-menu', 'input',
+  'label', 'popover', 'progress', 'radio-group', 'select',
+  'separator', 'skeleton', 'slider', 'switch', 'table', 'tabs',
+  'textarea', 'toggle', 'toggle-group', 'tooltip',
 ]
 
 export function SidebarNav() {

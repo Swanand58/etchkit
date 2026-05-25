@@ -7,16 +7,25 @@ import { execaCommand } from 'execa'
 const REGISTRY_BASE = path.resolve(__dirname, '../../../../registry/components')
 
 const RADIX_DEPS: Record<string, string[]> = {
-  checkbox: ['@radix-ui/react-checkbox'],
-  select: ['@radix-ui/react-select'],
-  dialog: ['@radix-ui/react-dialog'],
-  tabs: ['@radix-ui/react-tabs'],
-  switch: ['@radix-ui/react-switch'],
-  tooltip: ['@radix-ui/react-tooltip'],
-  separator: ['@radix-ui/react-separator'],
+  accordion: ['@radix-ui/react-accordion'],
   avatar: ['@radix-ui/react-avatar'],
-  label: ['@radix-ui/react-label'],
   button: ['@radix-ui/react-slot'],
+  checkbox: ['@radix-ui/react-checkbox'],
+  collapsible: ['@radix-ui/react-collapsible'],
+  dialog: ['@radix-ui/react-dialog'],
+  'dropdown-menu': ['@radix-ui/react-dropdown-menu'],
+  label: ['@radix-ui/react-label'],
+  popover: ['@radix-ui/react-popover'],
+  progress: ['@radix-ui/react-progress'],
+  'radio-group': ['@radix-ui/react-radio-group'],
+  select: ['@radix-ui/react-select'],
+  separator: ['@radix-ui/react-separator'],
+  slider: ['@radix-ui/react-slider'],
+  switch: ['@radix-ui/react-switch'],
+  tabs: ['@radix-ui/react-tabs'],
+  toggle: ['@radix-ui/react-toggle'],
+  'toggle-group': ['@radix-ui/react-toggle', '@radix-ui/react-toggle-group'],
+  tooltip: ['@radix-ui/react-tooltip'],
 }
 
 const COMMON_DEPS = ['clsx', 'tailwind-merge', 'class-variance-authority', 'lucide-react']

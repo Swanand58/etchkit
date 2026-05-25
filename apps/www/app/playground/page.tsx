@@ -8,8 +8,16 @@ import {
   Switch, Separator, Avatar, AvatarFallback,
   Select, SelectTrigger, SelectValue, SelectContent, SelectItem,
   Tooltip, TooltipProvider, TooltipTrigger, TooltipContent,
+  Textarea, Accordion, AccordionItem, AccordionTrigger, AccordionContent,
+  Popover, PopoverTrigger, PopoverContent,
+  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem,
+  DropdownMenuLabel, DropdownMenuSeparator,
+  RadioGroup, RadioGroupItem,
+  Progress, Slider, Toggle, ToggleGroup, ToggleGroupItem,
+  Skeleton, Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
+  Collapsible, CollapsibleTrigger, CollapsibleContent,
 } from '@etchkit/ui'
-import { AlertCircle, Copy, Check } from 'lucide-react'
+import { AlertCircle, Copy, Check, Bold, Italic, Underline, ChevronsUpDown } from 'lucide-react'
 
 interface Theme {
   background: string
@@ -369,6 +377,156 @@ export default function PlaygroundPage() {
                 </div>
               </TooltipProvider>
             </div>
+          </Section>
+
+          {/* Textarea */}
+          <Section title="Textarea">
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="pg-ta">Message</Label>
+              <Textarea id="pg-ta" placeholder="Write something…" />
+            </div>
+          </Section>
+
+          {/* Accordion */}
+          <Section title="Accordion">
+            <Accordion type="single" collapsible>
+              <AccordionItem value="a1">
+                <AccordionTrigger>What is etchkit?</AccordionTrigger>
+                <AccordionContent>No shadows. No softness. Just structure.</AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="a2">
+                <AccordionTrigger>Copy-paste model?</AccordionTrigger>
+                <AccordionContent>You own the code after adding it.</AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="a3">
+                <AccordionTrigger>Tailwind v4 required?</AccordionTrigger>
+                <AccordionContent>Yes, etchkit is built on Tailwind CSS v4.</AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </Section>
+
+          {/* Progress + Slider */}
+          <Section title="Progress & Slider">
+            <div className="flex flex-col gap-4">
+              <Progress value={33} />
+              <Progress value={66} />
+              <Progress value={100} />
+              <Slider defaultValue={[50]} max={100} step={1} />
+            </div>
+          </Section>
+
+          {/* Radio Group */}
+          <Section title="Radio Group">
+            <RadioGroup defaultValue="opt1">
+              <div className="flex items-center gap-2">
+                <RadioGroupItem value="opt1" id="pg-r1" />
+                <Label htmlFor="pg-r1">Option one</Label>
+              </div>
+              <div className="flex items-center gap-2">
+                <RadioGroupItem value="opt2" id="pg-r2" />
+                <Label htmlFor="pg-r2">Option two</Label>
+              </div>
+              <div className="flex items-center gap-2">
+                <RadioGroupItem value="opt3" id="pg-r3" />
+                <Label htmlFor="pg-r3">Option three</Label>
+              </div>
+            </RadioGroup>
+          </Section>
+
+          {/* Toggle + Toggle Group */}
+          <Section title="Toggle & Toggle Group">
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-2">
+                <Toggle aria-label="Bold"><Bold className="h-4 w-4" /></Toggle>
+                <Toggle aria-label="Italic" defaultPressed><Italic className="h-4 w-4" /></Toggle>
+                <Toggle aria-label="Underline"><Underline className="h-4 w-4" /></Toggle>
+              </div>
+              <ToggleGroup type="single" defaultValue="center">
+                <ToggleGroupItem value="left">Left</ToggleGroupItem>
+                <ToggleGroupItem value="center">Center</ToggleGroupItem>
+                <ToggleGroupItem value="right">Right</ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+          </Section>
+
+          {/* Popover + Dropdown */}
+          <Section title="Popover & Dropdown">
+            <div className="flex gap-2 flex-wrap">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm">Popover</Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <p className="text-sm text-muted-foreground">Popover content goes here.</p>
+                </PopoverContent>
+              </Popover>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="sm">Dropdown</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-40">
+                  <DropdownMenuLabel>Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Log out</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </Section>
+
+          {/* Skeleton */}
+          <Section title="Skeleton">
+            <div className="flex flex-col gap-3">
+              <Skeleton className="h-32 w-full" />
+              <Skeleton className="h-4 w-3/4" />
+              <Skeleton className="h-4 w-1/2" />
+            </div>
+          </Section>
+
+          {/* Table */}
+          <Section title="Table">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Amount</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Alpha</TableCell>
+                  <TableCell>Paid</TableCell>
+                  <TableCell className="text-right font-mono">$250</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Beta</TableCell>
+                  <TableCell>Pending</TableCell>
+                  <TableCell className="text-right font-mono">$150</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Section>
+
+          {/* Collapsible */}
+          <Section title="Collapsible">
+            <Collapsible className="w-full">
+              <div className="flex items-center justify-between border-2 border-foreground px-3 py-2">
+                <span className="text-sm font-medium">Repositories (3)</span>
+                <CollapsibleTrigger asChild>
+                  <Button variant="ghost" size="sm" className="p-0 h-auto border-0">
+                    <ChevronsUpDown className="h-4 w-4" />
+                  </Button>
+                </CollapsibleTrigger>
+              </div>
+              <div className="border-2 border-t-0 border-foreground px-3 py-2 text-sm">etchkit</div>
+              <CollapsibleContent>
+                <div className="border-2 border-t-0 border-foreground px-3 py-2 text-sm text-muted-foreground">etchkit-docs</div>
+                <div className="border-2 border-t-0 border-foreground px-3 py-2 text-sm text-muted-foreground">etchkit-templates</div>
+              </CollapsibleContent>
+            </Collapsible>
           </Section>
 
         </div>
