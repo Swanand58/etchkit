@@ -21,6 +21,7 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
 
       - run: pnpm install --frozen-lockfile
 
@@ -29,9 +30,15 @@ jobs:
 
       - run: npm publish --access public --provenance
         working-directory: packages/tailwind
+        env:
+          NODE_AUTH_TOKEN: ''
 
       - run: npm publish --access public --provenance
         working-directory: packages/ui
+        env:
+          NODE_AUTH_TOKEN: ''
 
       - run: npm publish --access public --provenance
         working-directory: packages/cli
+        env:
+          NODE_AUTH_TOKEN: ''
