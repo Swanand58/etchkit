@@ -1,6 +1,6 @@
 {
   "name": "@etchkit/tailwind",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Tailwind CSS v4 theme for etchkit",
   "main": "./etchkit.css",
   "exports": {
