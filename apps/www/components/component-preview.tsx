@@ -16,8 +16,19 @@ import {
   Tooltip, TooltipProvider, TooltipTrigger, TooltipContent,
   Separator,
   Avatar, AvatarImage, AvatarFallback,
+  Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator,
+  Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis,
+  Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose,
+  HoverCard, HoverCardTrigger, HoverCardContent,
+  ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator,
+  Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator,
+  ScrollArea, ScrollBar,
+  NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink, navigationMenuTriggerStyle,
+  Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator,
+  Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose,
 } from '@etchkit/ui'
-import { AlertCircle, Info } from 'lucide-react'
+import { toast } from 'sonner'
+import { AlertCircle, Info, CalendarDays } from 'lucide-react'
 
 const previews: Record<string, React.ReactNode> = {
   button: (
@@ -251,6 +262,228 @@ const previews: Record<string, React.ReactNode> = {
         <AvatarFallback>LG</AvatarFallback>
       </Avatar>
     </div>
+  ),
+  breadcrumb: (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem><BreadcrumbLink href="#">Home</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem><BreadcrumbLink href="#">Docs</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem><BreadcrumbPage>Button</BreadcrumbPage></BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  ),
+
+  pagination: (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+        <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
+        <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
+        <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
+        <PaginationItem><PaginationEllipsis /></PaginationItem>
+        <PaginationItem><PaginationNext href="#" /></PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  ),
+
+  sheet: (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Open Sheet</Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>Make changes to your profile here.</SheetDescription>
+        </SheetHeader>
+        <div className="flex flex-col gap-3 py-4">
+          <Label htmlFor="sheet-name">Name</Label>
+          <Input id="sheet-name" defaultValue="etchkit" />
+        </div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </SheetClose>
+          <Button>Save</Button>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  ),
+
+  'hover-card': (
+    <HoverCard>
+      <HoverCardTrigger asChild>
+        <Button variant="outline">@etchkit</Button>
+      </HoverCardTrigger>
+      <HoverCardContent>
+        <div className="flex flex-col gap-2">
+          <p className="text-xs font-medium uppercase tracking-widest">etchkit</p>
+          <p className="text-sm text-muted-foreground">No shadows. No softness. Just structure.</p>
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <CalendarDays className="h-3 w-3" />
+            <span>Joined 2025</span>
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  ),
+
+  'context-menu': (
+    <ContextMenu>
+      <ContextMenuTrigger className="flex h-24 w-48 items-center justify-center border-2 border-dashed border-foreground text-xs uppercase tracking-widest text-muted-foreground">
+        Right-click here
+      </ContextMenuTrigger>
+      <ContextMenuContent className="w-40">
+        <ContextMenuLabel>Actions</ContextMenuLabel>
+        <ContextMenuSeparator />
+        <ContextMenuItem>Copy</ContextMenuItem>
+        <ContextMenuItem>Paste</ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuItem>Delete</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  ),
+
+  menubar: (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>New</MenubarItem>
+          <MenubarItem>Open</MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>Save</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>Undo</MenubarItem>
+          <MenubarItem>Redo</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>Zoom In</MenubarItem>
+          <MenubarItem>Zoom Out</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  ),
+
+  'scroll-area': (
+    <ScrollArea className="h-48 w-48 border-2 border-foreground">
+      <div className="p-4">
+        {Array.from({ length: 20 }, (_, i) => (
+          <p key={i} className="text-sm py-1 border-b border-foreground/20">Item {i + 1}</p>
+        ))}
+      </div>
+    </ScrollArea>
+  ),
+
+  sonner: (
+    <div className="flex flex-wrap gap-2">
+      <Button onClick={() => toast('Event created', { description: 'Your event has been saved.' })}>
+        Show toast
+      </Button>
+      <Button variant="outline" onClick={() => toast.success('Saved successfully')}>
+        Success
+      </Button>
+      <Button variant="destructive" onClick={() => toast.error('Something went wrong')}>
+        Error
+      </Button>
+    </div>
+  ),
+
+  'navigation-menu': (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <div className="grid gap-3 p-4 w-[300px]">
+              <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+                Introduction
+              </NavigationMenuLink>
+              <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+                Installation
+              </NavigationMenuLink>
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+            Components
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  ),
+
+  form: (
+    <div className="w-full max-w-sm border-2 border-foreground p-6">
+      <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-4">
+        Form uses react-hook-form + zod
+      </p>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1.5">
+          <Label htmlFor="form-email">Email</Label>
+          <Input id="form-email" type="email" placeholder="you@example.com" />
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <Label htmlFor="form-pass">Password</Label>
+          <Input id="form-pass" type="password" placeholder="••••••••" />
+          <p className="text-xs text-muted-foreground">Min 8 characters.</p>
+        </div>
+        <Button className="w-full">Submit</Button>
+      </div>
+    </div>
+  ),
+
+  command: (
+    <Command className="border-2 border-foreground w-72">
+      <CommandInput placeholder="Search components…" />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Components">
+          <CommandItem>Button</CommandItem>
+          <CommandItem>Card</CommandItem>
+          <CommandItem>Input</CommandItem>
+          <CommandItem>Dialog</CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Pages">
+          <CommandItem>Docs</CommandItem>
+          <CommandItem>Playground</CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  ),
+
+  drawer: (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open Drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Drawer title</DrawerTitle>
+          <DrawerDescription>Swipe down or click outside to close.</DrawerDescription>
+        </DrawerHeader>
+        <div className="px-4 pb-4 flex flex-col gap-3">
+          <p className="text-sm text-muted-foreground">Drawer content goes here.</p>
+          <Button>Action</Button>
+        </div>
+        <DrawerFooter>
+          <DrawerClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   ),
 }
 

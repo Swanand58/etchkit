@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SiteHeader } from '@/components/site-header'
+import { Toaster } from '@etchkit/ui'
 import './globals.css'
 
 const inter = Inter({
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <SiteHeader />
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

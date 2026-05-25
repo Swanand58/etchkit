@@ -33,6 +33,18 @@ const componentMeta: Record<string, { title: string; description: string }> = {
   toggle: { title: 'Toggle', description: 'Two-state button. Active: bg-foreground text-background. Built on Radix Toggle.' },
   'toggle-group': { title: 'Toggle Group', description: 'Group of connected toggles. Borders collapse between items. Built on Radix ToggleGroup.' },
   tooltip: { title: 'Tooltip', description: 'bg-foreground text-background, 2px border, no radius. Radix Tooltip.' },
+  breadcrumb: { title: 'Breadcrumb', description: 'Accessible navigation trail. Chevron separators. Built with semantic nav + ol.' },
+  pagination: { title: 'Pagination', description: 'Page navigation using button variants. Active page = filled default variant.' },
+  sheet: { title: 'Sheet', description: 'Side panel that slides in from any edge. Built on Radix Dialog.' },
+  'hover-card': { title: 'Hover Card', description: 'Preview card on hover. 2px border, no radius. Built on Radix HoverCard.' },
+  'context-menu': { title: 'Context Menu', description: 'Right-click menu. Same structure as Dropdown Menu. Built on Radix ContextMenu.' },
+  menubar: { title: 'Menubar', description: 'Horizontal application menu. Active trigger = bg-foreground text-background. Built on Radix Menubar.' },
+  'scroll-area': { title: 'Scroll Area', description: 'Custom scroll container. bg-foreground scrollbar thumb. Built on Radix ScrollArea.' },
+  sonner: { title: 'Sonner', description: 'Toast notifications. 2px border, square, etchkit color tokens. Built on Sonner.' },
+  'navigation-menu': { title: 'Navigation Menu', description: 'Site navigation with dropdown panels. Built on Radix NavigationMenu.' },
+  form: { title: 'Form', description: 'Form validation wrapper for react-hook-form. FormField, FormItem, FormLabel, FormControl, FormMessage.' },
+  command: { title: 'Command', description: 'Command palette / search dialog. bg-foreground on selected item. Built on cmdk.' },
+  drawer: { title: 'Drawer', description: 'Bottom drawer with drag handle. Slides up from bottom edge. Built on Vaul.' },
 }
 
 export function generateStaticParams() {

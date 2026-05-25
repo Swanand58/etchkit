@@ -26,6 +26,18 @@ const RADIX_DEPS: Record<string, string[]> = {
   toggle: ['@radix-ui/react-toggle'],
   'toggle-group': ['@radix-ui/react-toggle', '@radix-ui/react-toggle-group'],
   tooltip: ['@radix-ui/react-tooltip'],
+  'hover-card': ['@radix-ui/react-hover-card'],
+  'context-menu': ['@radix-ui/react-context-menu'],
+  menubar: ['@radix-ui/react-menubar'],
+  'scroll-area': ['@radix-ui/react-scroll-area'],
+  'navigation-menu': ['@radix-ui/react-navigation-menu'],
+  command: ['cmdk'],
+  drawer: ['vaul'],
+  sonner: ['sonner'],
+  form: ['react-hook-form', '@hookform/resolvers', 'zod'],
+  sheet: [],
+  breadcrumb: ['@radix-ui/react-slot'],
+  pagination: [],
 }
 
 const COMMON_DEPS = ['clsx', 'tailwind-merge', 'class-variance-authority', 'lucide-react']

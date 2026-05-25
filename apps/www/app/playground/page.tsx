@@ -16,8 +16,18 @@ import {
   Progress, Slider, Toggle, ToggleGroup, ToggleGroupItem,
   Skeleton, Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
   Collapsible, CollapsibleTrigger, CollapsibleContent,
+  Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator,
+  Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious,
+  Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose,
+  HoverCard, HoverCardTrigger, HoverCardContent,
+  ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator,
+  Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator,
+  ScrollArea,
+  Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator,
+  Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose,
 } from '@etchkit/ui'
-import { AlertCircle, Copy, Check, Bold, Italic, Underline, ChevronsUpDown } from 'lucide-react'
+import { toast } from 'sonner'
+import { AlertCircle, Copy, Check, Bold, Italic, Underline, ChevronsUpDown, CalendarDays } from 'lucide-react'
 
 interface Theme {
   background: string
@@ -527,6 +537,200 @@ export default function PlaygroundPage() {
                 <div className="border-2 border-t-0 border-foreground px-3 py-2 text-sm text-muted-foreground">etchkit-templates</div>
               </CollapsibleContent>
             </Collapsible>
+          </Section>
+
+          {/* Breadcrumb */}
+          <Section title="Breadcrumb">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem><BreadcrumbLink href="#">Home</BreadcrumbLink></BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem><BreadcrumbLink href="#">Docs</BreadcrumbLink></BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem><BreadcrumbPage>Button</BreadcrumbPage></BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </Section>
+
+          {/* Pagination */}
+          <Section title="Pagination">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+                <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationNext href="#" /></PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </Section>
+
+          {/* Sheet */}
+          <Section title="Sheet">
+            <div className="flex gap-2 flex-wrap">
+              <Sheet>
+                <SheetTrigger asChild><Button variant="outline" size="sm">Right</Button></SheetTrigger>
+                <SheetContent side="right">
+                  <SheetHeader>
+                    <SheetTitle>Edit profile</SheetTitle>
+                    <SheetDescription>Make changes to your profile here.</SheetDescription>
+                  </SheetHeader>
+                  <div className="flex flex-col gap-3 py-4">
+                    <Label htmlFor="pg-sheet-name">Name</Label>
+                    <Input id="pg-sheet-name" defaultValue="etchkit" />
+                  </div>
+                  <SheetFooter>
+                    <SheetClose asChild><Button variant="outline">Cancel</Button></SheetClose>
+                    <Button>Save</Button>
+                  </SheetFooter>
+                </SheetContent>
+              </Sheet>
+              <Sheet>
+                <SheetTrigger asChild><Button variant="outline" size="sm">Left</Button></SheetTrigger>
+                <SheetContent side="left">
+                  <SheetHeader>
+                    <SheetTitle>Navigation</SheetTitle>
+                  </SheetHeader>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </Section>
+
+          {/* Hover Card */}
+          <Section title="Hover Card">
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Button variant="outline">@etchkit</Button>
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <div className="flex flex-col gap-2">
+                  <p className="text-xs font-medium uppercase tracking-widest">etchkit</p>
+                  <p className="text-sm text-muted-foreground">No shadows. No softness. Just structure.</p>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <CalendarDays className="h-3 w-3" />
+                    <span>Joined 2025</span>
+                  </div>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+          </Section>
+
+          {/* Context Menu */}
+          <Section title="Context Menu">
+            <ContextMenu>
+              <ContextMenuTrigger className="flex h-20 w-full items-center justify-center border-2 border-dashed border-foreground text-xs uppercase tracking-widest text-muted-foreground">
+                Right-click here
+              </ContextMenuTrigger>
+              <ContextMenuContent className="w-40">
+                <ContextMenuLabel>Actions</ContextMenuLabel>
+                <ContextMenuSeparator />
+                <ContextMenuItem>Copy</ContextMenuItem>
+                <ContextMenuItem>Paste</ContextMenuItem>
+                <ContextMenuSeparator />
+                <ContextMenuItem>Delete</ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenu>
+          </Section>
+
+          {/* Menubar */}
+          <Section title="Menubar">
+            <Menubar>
+              <MenubarMenu>
+                <MenubarTrigger>File</MenubarTrigger>
+                <MenubarContent>
+                  <MenubarItem>New</MenubarItem>
+                  <MenubarItem>Open</MenubarItem>
+                  <MenubarSeparator />
+                  <MenubarItem>Save</MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+              <MenubarMenu>
+                <MenubarTrigger>Edit</MenubarTrigger>
+                <MenubarContent>
+                  <MenubarItem>Undo</MenubarItem>
+                  <MenubarItem>Redo</MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+              <MenubarMenu>
+                <MenubarTrigger>View</MenubarTrigger>
+                <MenubarContent>
+                  <MenubarItem>Zoom In</MenubarItem>
+                  <MenubarItem>Zoom Out</MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+            </Menubar>
+          </Section>
+
+          {/* Scroll Area */}
+          <Section title="Scroll Area">
+            <ScrollArea className="h-40 w-full border-2 border-foreground">
+              <div className="p-3">
+                {Array.from({ length: 15 }, (_, i) => (
+                  <p key={i} className="text-sm py-1.5 border-b border-foreground/20 last:border-0">
+                    Item {i + 1}
+                  </p>
+                ))}
+              </div>
+            </ScrollArea>
+          </Section>
+
+          {/* Toast */}
+          <Section title="Sonner (Toast)">
+            <div className="flex flex-wrap gap-2">
+              <Button size="sm" onClick={() => toast('Event created', { description: 'Your event has been saved.' })}>
+                Default
+              </Button>
+              <Button size="sm" variant="outline" onClick={() => toast.success('Saved successfully')}>
+                Success
+              </Button>
+              <Button size="sm" variant="destructive" onClick={() => toast.error('Something went wrong')}>
+                Error
+              </Button>
+            </div>
+          </Section>
+
+          {/* Command */}
+          <Section title="Command">
+            <Command className="border-2 border-foreground">
+              <CommandInput placeholder="Search…" />
+              <CommandList>
+                <CommandEmpty>No results.</CommandEmpty>
+                <CommandGroup heading="Components">
+                  <CommandItem>Button</CommandItem>
+                  <CommandItem>Card</CommandItem>
+                  <CommandItem>Input</CommandItem>
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup heading="Pages">
+                  <CommandItem>Docs</CommandItem>
+                  <CommandItem>Playground</CommandItem>
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </Section>
+
+          {/* Drawer */}
+          <Section title="Drawer">
+            <Drawer>
+              <DrawerTrigger asChild>
+                <Button variant="outline">Open Drawer</Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>Drawer title</DrawerTitle>
+                  <DrawerDescription>Swipe down or click outside to close.</DrawerDescription>
+                </DrawerHeader>
+                <div className="px-4 pb-2 flex flex-col gap-3">
+                  <p className="text-sm text-muted-foreground">Drawer content goes here.</p>
+                  <Button>Action</Button>
+                </div>
+                <DrawerFooter>
+                  <DrawerClose asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </DrawerClose>
+                </DrawerFooter>
+              </DrawerContent>
+            </Drawer>
           </Section>
 
         </div>
