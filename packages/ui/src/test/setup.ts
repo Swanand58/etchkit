@@ -15,6 +15,8 @@ global.IntersectionObserver = class IntersectionObserver {
   readonly thresholds = []
 } as unknown as typeof IntersectionObserver
 
+Element.prototype.scrollIntoView = () => {}
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: (query: string) => ({
