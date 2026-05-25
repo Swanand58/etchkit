@@ -51,6 +51,7 @@ npx @etchkit/cli@latest add card
 | Calendar | ✓ | |
 | Card | | |
 | Carousel | | |
+| Chart | | |
 | Checkbox | ✓ | |
 | Collapsible | ✓ | |
 | Command | ✓ | |
@@ -60,7 +61,7 @@ npx @etchkit/cli@latest add card
 | Drawer | | |
 | Dropdown Menu | ✓ | |
 | Empty State | | ✦ |
-| Form | | |
+| Form | ✓ | |
 | Hover Card | ✓ | |
 | Input | | |
 | Input OTP | | |
@@ -91,7 +92,6 @@ npx @etchkit/cli@latest add card
 | Toggle | ✓ | |
 | Toggle Group | ✓ | |
 | Tooltip | ✓ | |
-| Chart | | |
 
 ✦ = etchkit-exclusive (not in shadcn/ui)
 

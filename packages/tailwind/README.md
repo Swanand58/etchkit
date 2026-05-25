@@ -25,15 +25,18 @@ That's it. All design tokens are available as CSS custom properties.
 
 | Token | Light | Dark |
 |-------|-------|------|
-| `--background` | `oklch(1 0 0)` | `oklch(0.145 0 0)` |
-| `--foreground` | `oklch(0.145 0 0)` | `oklch(0.985 0 0)` |
-| `--muted` | `oklch(0.97 0 0)` | `oklch(0.269 0 0)` |
-| `--muted-foreground` | `oklch(0.556 0 0)` | `oklch(0.708 0 0)` |
-| `--border` | `oklch(0.922 0 0)` | `oklch(0.269 0 0)` |
-| `--destructive` | `oklch(0.577 0.245 27.325)` | `oklch(0.704 0.191 22.216)` |
+| `--background` | `#F8FAFC` (slate-50) | `#1e2130` (steel blue-gray) |
+| `--foreground` | `#0F172A` (slate-900) | `#F5F7FA` (blue-tinted white) |
+| `--muted` | `#F0F4F8` | `#252836` |
+| `--muted-foreground` | `#64748B` | `#94A3B8` |
+| `--border` | `#0F172A` | `#FAFAFA` |
+| `--destructive` | `#EF4444` | `#EF4444` |
+| `--surface-dark` | `#1e2130` | `#1e2130` |
 | `--radius` | `0px` | `0px` |
 
-Dark mode is supported via the `.dark` class on `<html>`.
+`--surface-dark` is a fixed dark token for inverted sections — same value in both light and dark mode.
+
+Dark mode via `.dark` class on `<html>`.
 
 ## Customization
 
